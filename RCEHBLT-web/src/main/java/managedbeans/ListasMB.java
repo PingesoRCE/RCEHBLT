@@ -25,7 +25,7 @@ import cl.rcehblt.entities.EstadoConyugal;
 import cl.rcehblt.entities.Subespecialidad;
 import cl.rcehblt.entities.GrupoProfesional;
 import cl.rcehblt.entities.ServicioSalud;
-import cl.rcehblt.especialidad.EspecialidadNegocioLocal;
+//import cl.rcehblt.especialidad.EspecialidadNegocioLocal;
 import cl.rcehblt.sessionbeans.CargoFacadeLocal;
 import cl.rcehblt.sessionbeans.ComunaFacadeLocal;
 import cl.rcehblt.sessionbeans.ConsultorioFacadeLocal;
@@ -77,8 +77,8 @@ public class ListasMB {
     private GrupoProfesionalFacadeLocal grupoProfesionalFacade;
     @EJB
     private CargoFacadeLocal cargoFacade;
-    @EJB
-    private EspecialidadNegocioLocal especialidadNegocio;
+//    @EJB
+//    private EspecialidadNegocioLocal especialidadNegocio;
     @EJB
     private SubespecialidadNegocioLocal subespecialidadNegocio;
     @EJB
@@ -215,14 +215,14 @@ public class ListasMB {
      * Buscar especialidad.
      * Busca una especialidad por el nombre indicado en el formulario.
      */
-    public void buscarEspecialidad(){
-        listaEspecialidades = especialidadNegocio.busquedaEspecialidadNombre(elementoBuscado);
-        for (i = listaEspecialidades.size() - 1; i >= 0; i--) {
-            if (!listaEspecialidades.get(i).getEspeActivo()) {
-                listaEspecialidades.remove(i);
-            }
-        }
-    }
+//    public void buscarEspecialidad(){
+//        listaEspecialidades = especialidadNegocio.busquedaEspecialidadNombre(elementoBuscado);
+//        for (i = listaEspecialidades.size() - 1; i >= 0; i--) {
+//            if (!listaEspecialidades.get(i).getEspeActivo()) {
+//                listaEspecialidades.remove(i);
+//            }
+//        }
+//    }
 
     /**
      * Filtrar especialidades.
@@ -245,12 +245,12 @@ public class ListasMB {
      * seleccionada.
      * @param event Evento en la página xhtml que acciona la función.
      */
-    public void filtrarSubespecialidad(SelectEvent event){
-        if(especialidadNegocio.busquedaEspecialidadNombre(filtro) != null){
-            especialidadSeleccionadaId = especialidadNegocio.busquedaEspecialidadNombre(filtro).get(0).getIdEspecialidad();
-            this.filtrarEspecialidad(event);
-        }
-    }
+//    public void filtrarSubespecialidad(SelectEvent event){
+//        if(especialidadNegocio.busquedaEspecialidadNombre(filtro) != null){
+//            especialidadSeleccionadaId = especialidadNegocio.busquedaEspecialidadNombre(filtro).get(0).getIdEspecialidad();
+//            this.filtrarEspecialidad(event);
+//        }
+//    }
     
     /**
      * Completar subespecialidades.

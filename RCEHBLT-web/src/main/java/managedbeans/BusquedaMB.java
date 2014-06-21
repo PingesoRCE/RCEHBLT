@@ -6,7 +6,6 @@
 package managedbeans;
 
 import cl.rcehblt.entities.Paciente;
-import cl.rcehblt.entities.PacienteFacadeLocal;
 import cl.rcehblt.entities.Persona;
 import cl.rcehblt.paciente.PacienteNegocioLocal;
 import cl.rcehblt.persona.PersonaNegocioLocal;
