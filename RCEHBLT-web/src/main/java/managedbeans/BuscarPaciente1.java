@@ -40,7 +40,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 @ManagedBean
 @SessionScoped
 
-public class BuscarPaciente {
+public class BuscarPaciente1 {
     @EJB
     private PacienteNegocioLocal pacienteNegocio;
        
@@ -97,7 +97,7 @@ public class BuscarPaciente {
     private String esterilizacion = "Esterilizacion";
     private String tipoAux;
 
-    public BuscarPaciente() {
+    public BuscarPaciente1() {
     }
 
     /**
@@ -188,46 +188,40 @@ public class BuscarPaciente {
      */
     public void actualizar() {
         System.out.println("ESTOY EN EL ACTUALIZAR");
-        try {
-            comuna = new Comuna(comunaId);
-            educacion = new Educacion(educacionId);
-            puebloOriginario = new PuebloOriginario(puebloOriginarioId);
-            religion = new Religion(religionId);
-            estadoConyugal = new EstadoConyugal(estadoConyugalId);
-            prevision = new Prevision(previsionId);
-            tipoPrevision = new TipoPrevision(tipoPrevisionId);
-            leyesSociales = new LeyesSociales(leyesSocialesId);
-            consultorio = new Consultorio(consultorioId);
+        /*comuna = new Comuna(comunaId);
+        educacion = new Educacion(educacionId);
+        puebloOriginario = new PuebloOriginario(puebloOriginarioId);
+        religion = new Religion(religionId);
+        estadoConyugal = new EstadoConyugal(estadoConyugalId);
+        prevision = new Prevision(previsionId);
+        tipoPrevision = new TipoPrevision(tipoPrevisionId);
+        leyesSociales = new LeyesSociales(leyesSocialesId);
+        consultorio = new Consultorio(consultorioId);
 
-            personaSeleccionada.setIdComuna(comuna);
-            personaSeleccionada.setIdEducacion(educacion);
-            personaSeleccionada.setIdPueblooriginario(puebloOriginario);
-            personaSeleccionada.setIdReligion(religion);
-            personaSeleccionada.setIdEstadoconyugal(estadoConyugal);
+        personaSeleccionada.setIdComuna(comuna);
+        personaSeleccionada.setIdEducacion(educacion);
+        personaSeleccionada.setIdPueblooriginario(puebloOriginario);
+        personaSeleccionada.setIdReligion(religion);
+        personaSeleccionada.setIdEstadoconyugal(estadoConyugal);
 
-            pacienteSeleccionado.setIdPrevision(prevision);
-            pacienteSeleccionado.setIdConsultorio(consultorio);
-            pacienteSeleccionado.setIdLeyessociales(leyesSociales);
-            pacienteSeleccionado.setIdTipoprevision(tipoPrevision);
-            if (pacienteFallecidoAux == true) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "El paciente esta registrado como fallecido."));
+        pacienteSeleccionado.setIdPrevision(prevision);
+        pacienteSeleccionado.setIdConsultorio(consultorio);
+        pacienteSeleccionado.setIdLeyessociales(leyesSociales);
+        pacienteSeleccionado.setIdTipoprevision(tipoPrevision);
+        if (pacienteFallecidoAux == true) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "El paciente esta registrado como fallecido."));
+        } else {
+            if (pacienteSeleccionado.getIdTipoprevision().getIdTipoprevision() == 0 && (pacienteSeleccionado.getIdPrevision().getIdPrevision() == 1 || pacienteSeleccionado.getIdPrevision().getIdPrevision() == 2)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "Debe poner un tipo de previsión."));
             } else {
-                if (pacienteSeleccionado.getIdTipoprevision().getIdTipoprevision() == 0 && (pacienteSeleccionado.getIdPrevision().getIdPrevision() == 1 || pacienteSeleccionado.getIdPrevision().getIdPrevision() == 2)) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "Debe poner un tipo de previsión."));
-                } else {
-                    System.out.println("ESTOY EN EL ELSE DE EDITAR");
-                    personaFacade.edit(personaSeleccionada);
-                    pacienteFacade.edit(pacienteSeleccionado);
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Datos Actualizados"));
-                }
-
+                System.out.println("ESTOY EN EL ELSE DE EDITAR");
+                personaFacade.edit(personaSeleccionada);
+                pacienteFacade.edit(pacienteSeleccionado);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Datos Actualizados"));
             }
 
-            
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Estoy en el catch"));
-        }
-        
+        }*/
+
     }
 
     private List<ConsentimientoInformado> filtrarConsentimientoInt(List<ConsentimientoInformado> consentimientosAuxInt, int idPaciente) {        

@@ -8,16 +8,16 @@
         <p:growl id="growl" showDetail="true"/>
 
         <p:dataTable emptyMessage="No se encontraron elementos que coincidan con la búsqueda" id="Personas" paginator="true" paginatorAlwaysVisible="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                     rowsPerPageTemplate="5,10,20"   var="paciente" value="#{buscarPaciente.personasObject}">  
+                     rowsPerPageTemplate="5,10,20"   var="paciente" value="#{buscarPaciente1.personasObject}">  
             <f:facet name="header">
                 <p:outputPanel>
                     <h:panelGrid columns="3" id="panelCampo" styleClass="companyHeaderGrid">
                         <p:outputLabel value="Buscar"></p:outputLabel>
-                        <p:autoComplete id="completePaciente" value="#{buscarPaciente.buscado}" completeMethod="#{buscarPaciente.completarBusqueda}" 
+                        <p:autoComplete id="completePaciente" value="#{buscarPaciente1.buscado}" completeMethod="#{buscarPaciente1.completarBusqueda}" 
                                 var="pac" itemLabel="#{pac}" itemValue="#{pac}" dropdown="true"/>
-                        <p:commandButton update="Personas, :formBuscar:growl" action="#{buscarPaciente.buscarPersona()}" value="Buscar" icon="ui-icon-search"/>
+                        <p:commandButton update="Personas, :formBuscar:growl" action="#{buscarPaciente1.buscarPersona()}" value="Buscar" icon="ui-icon-search"/>
                     </h:panelGrid>
-                    <p:selectOneRadio columns="3" requiredMessage="Seleccione un campo de búsqueda" required ="true"  id="buscado" value="#{buscarPaciente.opcion}"> 
+                    <p:selectOneRadio columns="3" requiredMessage="Seleccione un campo de búsqueda" required ="true"  id="buscado" value="#{buscarPaciente1.opcion}"> 
                         <p:ajax event="change" update="completePaciente"/>
                         <f:selectItem itemLabel="Rut" itemValue="1" />  
                         <f:selectItem itemLabel="Nombre" itemValue="2" />  
@@ -52,15 +52,15 @@
             </p:column>
             <p:column headerText="Acción" > 
                 <p:commandButton update=":actualizarPersona" onclick="PF('dialogEditarPersona').show()"  icon="ui-icon-pencil" title="Editar" >
-                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente.personaSeleccionada}" />  
+                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente1.personaSeleccionada}" />  
                 </p:commandButton>
 
                 <p:commandButton update=":verConsentimientosInter" onclick="PF('dialogVerConsentimientoInter').show()" value ="Consentimiento Intervención" >
-                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente.personaSeleccionada}" />  
+                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente1.personaSeleccionada}" />  
                 </p:commandButton>
                 
                 <p:commandButton update=":verConsentimientosEst" onclick="PF('dialogVerConsentimientoEst').show()"  value ="Consentimiento Esterilización" >
-                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente.personaSeleccionada}" />  
+                    <f:setPropertyActionListener value="#{paciente}" target="#{buscarPaciente1.personaSeleccionada}" />  
                 </p:commandButton> 
             </p:column> 
         </p:dataTable>
@@ -72,66 +72,66 @@
             <p:panelGrid columns="2" id="panelEditar" styleClass="companyHeaderGrid">
                 <p:panel header="Antecedentes Personales">
                     <p:outputLabel value="RUT Paciente: "/>
-                    <p:inputText id="rut" readonly="true" required="true" value="#{buscarPaciente.personaSeleccionada.persRut}"/>-<p:inputText id="dv" readonly="true" style="width: 10px" required="true" value="#{buscarPaciente.personaSeleccionada.persDv}"/>
+                    <p:inputText id="rut" readonly="true" required="true" value="#{buscarPaciente1.personaSeleccionada.persRut}"/>-<p:inputText id="dv" readonly="true" style="width: 10px" required="true" value="#{buscarPaciente1.personaSeleccionada.persDv}"/>
                     <br/>
                     <br/>
                     <p:panelGrid columns="3">
                         <p:outputLabel value="Nombres: " />
-                        <p:inputText id="Nombres" readonly="true" required="true" value="#{buscarPaciente.personaSeleccionada.persNombres}">
+                        <p:inputText id="Nombres" readonly="true" required="true" value="#{buscarPaciente1.personaSeleccionada.persNombres}">
                             <f:validateLength minimum="2"/>
                             <f:validator validatorId="Validator.NameValidator"/>
                         </p:inputText>
                         <p:message for="Nombres"/>
                         <p:outputLabel value="Apellido Paterno: "/>
-                        <p:inputText id="Paterno" readonly="true" required="true" value="#{buscarPaciente.personaSeleccionada.persApepaterno}">
+                        <p:inputText id="Paterno" readonly="true" required="true" value="#{buscarPaciente1.personaSeleccionada.persApepaterno}">
                             <f:validateLength minimum="2"/>
                             <f:validator validatorId="Validator.NameValidator"/>
                         </p:inputText>
                         <p:message for="Paterno"/>
                         <p:outputLabel value="Apellido Materno: "/>
-                        <p:inputText id="Materno" readonly="true" required="true" value="#{buscarPaciente.personaSeleccionada.persApematerno}">
+                        <p:inputText id="Materno" readonly="true" required="true" value="#{buscarPaciente1.personaSeleccionada.persApematerno}">
                             <f:validateLength minimum="2"/>
                             <f:validator validatorId="Validator.NameValidator"/>
                         </p:inputText>
                         <p:message for="Materno"/>                          
 
                         <p:outputLabel value="Fecha Nacimiento: "/>
-                        <p:inputText id="fecha" readonly="true" required="true" value="#{buscarPaciente.personaSeleccionada.persFnacimiento}"/>
+                        <p:inputText id="fecha" readonly="true" required="true" value="#{buscarPaciente1.personaSeleccionada.persFnacimiento}"/>
                         <p:message for="fecha"/>
 
                         <p:outputLabel value="Nacionalidad: "/>
-                        <p:inputText id="Nacionalidad" required="true" readonly="true" value="#{buscarPaciente.personaSeleccionada.persNacionalidad}"/>                        
+                        <p:inputText id="Nacionalidad" required="true" readonly="true" value="#{buscarPaciente1.personaSeleccionada.persNacionalidad}"/>                        
                         <p:message for="Nacionalidad"/>
                     </p:panelGrid>
                 </p:panel>
                 <p:panel header="Información de Contacto">
                     <p:panelGrid columns="3">
                         <p:outputLabel value="Dirección: "/>
-                        <p:inputText id="Direccion" value="#{buscarPaciente.personaSeleccionada.persDireccion}"/>
+                        <p:inputText id="Direccion" value="#{buscarPaciente1.personaSeleccionada.persDireccion}"/>
                         <p:message for="Direccion"/>
                         <p:outputLabel value="Comuna: "/>
-                        <p:selectOneMenu id="Comuna" value="#{buscarPaciente.comunaId}" required="true">
-                            <f:selectItem itemLabel="#{buscarPaciente.personaSeleccionada.idComuna.comuNombre}" itemValue="#{buscarPaciente.personaSeleccionada.idComuna.idComuna}" />
+                        <p:selectOneMenu id="Comuna" value="#{buscarPaciente1.comunaId}" required="true">
+                            <f:selectItem itemLabel="#{buscarPaciente1.personaSeleccionada.idComuna.comuNombre}" itemValue="#{buscarPaciente1.personaSeleccionada.idComuna.idComuna}" />
                             <f:selectItems value="#{listasMB.listaComuna}" var="comu" itemLabel="#{comu.comuNombre}" itemValue="#{comu.idComuna}" />
                         </p:selectOneMenu>
                         <p:message for="Comuna"/>
                         <p:outputLabel value="Email: "/>
-                        <p:inputText id="Email" value="#{buscarPaciente.personaSeleccionada.persEmail}">
+                        <p:inputText id="Email" value="#{buscarPaciente1.personaSeleccionada.persEmail}">
                             <f:validator validatorId="Validator.EmailValidator"/>
                         </p:inputText>
                         <p:message for="Email"/>
                         <p:outputLabel value="Teléfono: "/>
-                        <p:inputText id="Telefono" value="#{buscarPaciente.personaSeleccionada.persTelefono}">
+                        <p:inputText id="Telefono" value="#{buscarPaciente1.personaSeleccionada.persTelefono}">
                             <f:validator validatorId="Validator.PhoneValidator"/>
                         </p:inputText>
                         <p:message for="Telefono"/>
                         <p:outputLabel value="Celular: "/>
-                        <p:inputText id="Celular" value="#{buscarPaciente.personaSeleccionada.persCelular}">
+                        <p:inputText id="Celular" value="#{buscarPaciente1.personaSeleccionada.persCelular}">
                             <f:validator validatorId="Validator.PhoneValidator"/>
                         </p:inputText>
                         <p:message for="Celular"/>
                         <p:outputLabel value="Teléfono de contacto: "/>
-                        <p:inputText id="TelefonoContacto" required="true" value="#{buscarPaciente.personaSeleccionada.persTelcontacto}">
+                        <p:inputText id="TelefonoContacto" required="true" value="#{buscarPaciente1.personaSeleccionada.persTelcontacto}">
                             <f:validator validatorId="Validator.PhoneValidator"/>
                         </p:inputText>
                         <p:message for="TelefonoContacto"/>
@@ -141,32 +141,32 @@
 
                     <p:panelGrid columns="3" >
                         <p:outputLabel value="Estado Conyugal: "/>
-                        <p:selectOneMenu id="Estado" value="#{buscarPaciente.estadoConyugalId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.personaSeleccionada.idEstadoconyugal.estadNombre}" itemValue="#{buscarPaciente.personaSeleccionada.idEstadoconyugal.idEstadoconyugal}" />
+                        <p:selectOneMenu id="Estado" value="#{buscarPaciente1.estadoConyugalId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.personaSeleccionada.idEstadoconyugal.estadNombre}" itemValue="#{buscarPaciente1.personaSeleccionada.idEstadoconyugal.idEstadoconyugal}" />
                             <f:selectItems value="#{listasMB.listaEstados}" var="e" itemLabel="#{e.estadNombre}" itemValue="#{e.idEstadoconyugal}"/>
                         </p:selectOneMenu>
                         <p:message for="Estado"/>
                         <p:outputLabel value="Nivel de Educaciòn: "/>
-                        <p:selectOneMenu id="Educacion" value="#{buscarPaciente.educacionId}" >
-                            <f:selectItem itemLabel="#{buscarPaciente.personaSeleccionada.idEducacion.educNombre}" itemValue="#{buscarPaciente.personaSeleccionada.idEducacion.idEducacion}" />
+                        <p:selectOneMenu id="Educacion" value="#{buscarPaciente1.educacionId}" >
+                            <f:selectItem itemLabel="#{buscarPaciente1.personaSeleccionada.idEducacion.educNombre}" itemValue="#{buscarPaciente1.personaSeleccionada.idEducacion.idEducacion}" />
                             <f:selectItems value="#{listasMB.listaEducacion}" var="edu" itemLabel="#{edu.educNombre}" itemValue="#{edu.idEducacion}" />
                         </p:selectOneMenu>
                         <p:message for="Educacion"/>
                         <p:outputLabel value="Ocupación: "/>
-                        <p:inputText id="Ocupacion" value="#{buscarPaciente.personaSeleccionada.persOcupacion}"/>                                    
+                        <p:inputText id="Ocupacion" value="#{buscarPaciente1.personaSeleccionada.persOcupacion}"/>                                    
                         <p:message for="Ocupacion"/>
                         <p:outputLabel value="Actividad Económica: "/>
-                        <p:inputText id="Actividad" value="#{buscarPaciente.personaSeleccionada.persActividad}"/>
+                        <p:inputText id="Actividad" value="#{buscarPaciente1.personaSeleccionada.persActividad}"/>
                         <p:message for="Actividad"/>
                         <p:outputLabel value="Pueblo Originario: "/>
-                        <p:selectOneMenu id="Pueblo" value="#{buscarPaciente.puebloOriginarioId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.personaSeleccionada.idPueblooriginario.puebloNombre}" itemValue="#{buscarPaciente.personaSeleccionada.idPueblooriginario.idPueblooriginario}" />
+                        <p:selectOneMenu id="Pueblo" value="#{buscarPaciente1.puebloOriginarioId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.personaSeleccionada.idPueblooriginario.puebloNombre}" itemValue="#{buscarPaciente1.personaSeleccionada.idPueblooriginario.idPueblooriginario}" />
                             <f:selectItems value="#{listasMB.listaPueblos}" var="town" itemLabel="#{town.puebloNombre}" itemValue="#{town.idPueblooriginario}" />
                         </p:selectOneMenu>
                         <p:message for="Pueblo"/>
                         <p:outputLabel value="Religión: "/>
-                        <p:selectOneMenu id="Religion" value="#{buscarPaciente.religionId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.personaSeleccionada.idReligion.reliName}" itemValue="#{buscarPaciente.personaSeleccionada.idReligion.idReligion}" />
+                        <p:selectOneMenu id="Religion" value="#{buscarPaciente1.religionId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.personaSeleccionada.idReligion.reliName}" itemValue="#{buscarPaciente1.personaSeleccionada.idReligion.idReligion}" />
                             <f:selectItems value="#{listasMB.listaReligion}" var="reli" itemLabel="#{reli.reliName}" itemValue="#{reli.idReligion}" />
                         </p:selectOneMenu>
                         <p:message for="Religion"/>
@@ -176,60 +176,65 @@
 
                     <p:panelGrid columns="3" >
                         <p:outputLabel value="Numero de Ficha: "/>
-                        <p:inputText id="Ficha" value="#{buscarPaciente.pacienteSeleccionado.paciNficha}"/>                                    
+                        <p:inputText id="Ficha" value="#{buscarPaciente1.pacienteSeleccionado.paciNficha}"/>                                    
                         <p:message for="Ficha"/>
 
                         <p:outputLabel value="Previsión de salud: "/>
-                        <p:selectOneMenu id="Prevision" value="#{buscarPaciente.previsionId}">
-                            <p:ajax event="change" listener="#{buscarPaciente.buscaTipo}" update="TipoPrev, OtraPrev"/>
-                            <f:selectItem itemLabel="#{buscarPaciente.pacienteSeleccionado.idPrevision.previNombre}" itemValue="#{buscarPaciente.pacienteSeleccionado.idPrevision.idPrevision}" />
+                        <p:selectOneMenu id="Prevision" value="#{buscarPaciente1.previsionId}">
+                            <p:ajax event="change" listener="#{buscarPaciente1.buscaTipo}" update="TipoPrev, OtraPrev"/>
+                            <f:selectItem itemLabel="#{buscarPaciente1.pacienteSeleccionado.idPrevision.previNombre}" itemValue="#{buscarPaciente1.pacienteSeleccionado.idPrevision.idPrevision}" />
                             <f:selectItems value="#{listasMB.listaPrevision}" var="prev" itemLabel="#{prev.previNombre}" itemValue="#{prev.idPrevision}" />
                         </p:selectOneMenu>
                         <p:message for="Prevision" display="icon"/>
 
                         <p:outputLabel value="Tipo previsión: "/>
-                        <p:selectOneMenu id="TipoPrev" value="#{buscarPaciente.tipoPrevisionId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.pacienteSeleccionado.idTipoprevision.clasNombre}" itemValue="#{buscarPaciente.pacienteSeleccionado.idTipoprevision.idTipoprevision}" />
-                            <f:selectItems value="#{buscarPaciente.listaTipos}" var="tipo" itemLabel="#{tipo.clasNombre}" itemValue="#{tipo.idTipoprevision}" />
+                        <p:selectOneMenu id="TipoPrev" value="#{buscarPaciente1.tipoPrevisionId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.pacienteSeleccionado.idTipoprevision.clasNombre}" itemValue="#{buscarPaciente1.pacienteSeleccionado.idTipoprevision.idTipoprevision}" />
+                            <f:selectItems value="#{buscarPaciente1.listaTipos}" var="tipo" itemLabel="#{tipo.clasNombre}" itemValue="#{tipo.idTipoprevision}" />
                         </p:selectOneMenu>
                         <p:message for="TipoPrev" display="icon"/>
 
                         <p:outputLabel value="Otra previsión: "/>
-                        <p:inputText id="OtraPrev" value="#{buscarPaciente.pacienteSeleccionado.paciOtraprevision}" disabled="#{buscarPaciente.previsionId != 6}"/>
+                        <p:inputText id="OtraPrev" value="#{buscarPaciente1.pacienteSeleccionado.paciOtraprevision}" disabled="#{buscarPaciente1.previsionId != 6}"/>
                         <p:message for="OtraPrev"/>
 
 
                         <p:outputLabel value="Leyes Sociales: "/>
-                        <p:selectOneMenu id="Ley" value="#{buscarPaciente.leyesSocialesId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.pacienteSeleccionado.idLeyessociales.leyesNombre}" itemValue="#{buscarPaciente.pacienteSeleccionado.idLeyessociales.idLeyessociales}" />
+                        <p:selectOneMenu id="Ley" value="#{buscarPaciente1.leyesSocialesId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.pacienteSeleccionado.idLeyessociales.leyesNombre}" itemValue="#{buscarPaciente1.pacienteSeleccionado.idLeyessociales.idLeyessociales}" />
                             <f:selectItems value="#{listasMB.listaLeyes}" var="ley" itemLabel="#{ley.leyesNombre}" itemValue="#{ley.idLeyessociales}"/>
                         </p:selectOneMenu>
                         <p:message for="Ley"/>
 
                         <p:outputLabel value="Consultorio: "/>
-                        <p:selectOneMenu id="Con" value="#{buscarPaciente.consultorioId}">
-                            <f:selectItem itemLabel="#{buscarPaciente.pacienteSeleccionado.idConsultorio.consNombre}" itemValue="#{buscarPaciente.pacienteSeleccionado.idConsultorio.idConsultorio}" />
+                        <p:selectOneMenu id="Con" value="#{buscarPaciente1.consultorioId}">
+                            <f:selectItem itemLabel="#{buscarPaciente1.pacienteSeleccionado.idConsultorio.consNombre}" itemValue="#{buscarPaciente1.pacienteSeleccionado.idConsultorio.idConsultorio}" />
                             <f:selectItems value="#{listasMB.listaConsultorio}" var="consul" itemLabel="#{consul.consNombre}" itemValue="#{consul.idConsultorio}"/>
                         </p:selectOneMenu>                        
                         <p:message for="Con"/>                       
 
                         <h:outputText value="Fallecido: " />  
-                        <p:selectBooleanCheckbox id = "id1" value="#{buscarPaciente.pacienteSeleccionado.paciFallecido}"  >
+                        <p:selectBooleanCheckbox id = "id1" value="#{buscarPaciente1.pacienteSeleccionado.paciFallecido}"  >
                             <p:ajax event="change"  update="FechaFall"/>
                         </p:selectBooleanCheckbox>
                         <p:message id="msgMaq" for="id1"  />
 
                         <p:outputLabel  value="Fecha Fallecimiento: " />
-                        <p:calendar disabled="#{buscarPaciente.pacienteSeleccionado.paciFallecido == false}" id="FechaFall" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente.pacienteSeleccionado.paciFfallecimiento}" required="false">
+                        <p:calendar disabled="#{buscarPaciente1.pacienteSeleccionado.paciFallecido == false}" id="FechaFall" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente1.pacienteSeleccionado.paciFfallecimiento}" required="false">
                         </p:calendar>
                         <p:message for="FechaFall" display="icon"/>
 
                     </p:panelGrid>
                 </p:panel>
             </p:panelGrid>
-            <p:commandButton id="editarPers" value="Actualizar Datos" disabled="#{buscarPaciente.pacienteFallecidoAux}" update=":formBuscar:Personas, :dialogEditar"  actionListener="#{buscarPaciente.actualizar()}" >
+            <!--<p:commandButton id="editarPers" value="Actualizar Datos" disabled="#{buscarPaciente1.pacienteFallecidoAux}" update=":formBuscar:Personas, :dialogEditar"  actionListener="#{buscarPaciente1.actualizar()}" >
                 <p:confirm  header="Atención" message="¿Está seguro que desea actualizar los datos?" icon="ui-icon-alert" />
-            </p:commandButton> 
+            </p:commandButton>-->
+            
+            <p:commandButton id="editarPers" value="Actualizar Datos" disabled="#{buscarPaciente1.pacienteFallecidoAux}" update=":formBuscar:Personas, :dialogEditar"  actionListener="#{buscarPaciente1.actualizar()}" >
+                <p:confirm  header="Atención" message="¿Está seguro que desea actualizar los datos?" icon="ui-icon-alert" />
+            </p:commandButton>
+            
         </h:form>
     </p:dialog>
 
@@ -237,7 +242,7 @@
         <h:form id="verConsentimientosInter">
             <p:growl id="growl1" showDetail="true" sticky="true" />
             <p:dataTable emptyMessage="No se encontraron elementos que coincidan con la búsqueda" id="PersonasInter" paginator="true" paginatorAlwaysVisible="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                         rowsPerPageTemplate="5,10,20"   var="concentimientoInter" value="#{buscarPaciente.consentimientosSeleccionadosInter}">  
+                         rowsPerPageTemplate="5,10,20"   var="concentimientoInter" value="#{buscarPaciente1.consentimientosSeleccionadosInter}">  
 
 
                 <p:column headerText="Fecha">  
@@ -251,7 +256,7 @@
 
                 <p:column headerText="Acción"  >
                     <p:commandButton update=":actualizarConsentimiento"   onclick= "PF('dialogEditarConsentimiento').show()"  icon="ui-icon-pencil" title="Editar Consentimiento Examen" >
-                        <f:setPropertyActionListener value="#{concentimientoInter}" target="#{buscarPaciente.consentimientoInformadoSeleccionado}" />  
+                        <f:setPropertyActionListener value="#{concentimientoInter}" target="#{buscarPaciente1.consentimientoInformadoSeleccionado}" />  
                     </p:commandButton>
                     
                 </p:column> 
@@ -265,7 +270,7 @@
         <h:form id="verConsentimientosEst">
             <p:growl id="growl1" showDetail="true" sticky="true" />
             <p:dataTable emptyMessage="No se encontraron elementos que coincidan con la búsqueda" id="PersonasEst" paginator="true" paginatorAlwaysVisible="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                         rowsPerPageTemplate="5,10,20"   var="concentimientoEst" value="#{buscarPaciente.consentimientosSeleccionadosEst}">  
+                         rowsPerPageTemplate="5,10,20"   var="concentimientoEst" value="#{buscarPaciente1.consentimientosSeleccionadosEst}">  
 
 
                 <p:column headerText="Fecha">  
@@ -280,11 +285,11 @@
                 <p:column headerText="Acción"  >                    
 
                     <!--<p:commandButton update=":actualizarConsentimientoVIH"    onclick="PF('dialogEditarConsentimientoVIH').show()"  icon="ui-icon-pencil" title="Editar Consentimiento VIH" >
-                        <f:setPropertyActionListener value="#{concentimiento}" target="#{buscarPaciente.consentimientoInformadoSeleccionado}" />  
+                        <f:setPropertyActionListener value="#{concentimiento}" target="#{buscarPaciente1.consentimientoInformadoSeleccionado}" />  
                     </p:commandButton>-->
 
                     <p:commandButton update=":actualizarConsentimientoEst"  onclick="PF('dialogEditarConsentimientoEst').show()"  icon="ui-icon-pencil" title="Editar Consentimiento Esterilizacion" >
-                        <f:setPropertyActionListener value="#{concentimientoEst}" target="#{buscarPaciente.consentimientoInformadoSeleccionado}" />  
+                        <f:setPropertyActionListener value="#{concentimientoEst}" target="#{buscarPaciente1.consentimientoInformadoSeleccionado}" />  
                     </p:commandButton> 
                 </p:column> 
             </p:dataTable>
@@ -300,23 +305,23 @@
                 <p:panel id="InformacionPersonalCons" header="Datos del Paciente y/o Representante">
                     <p:panelGrid columns="6">
                         <p:outputLabel for="RutCons" value="Rut: "/>
-                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
+                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
                         <p:message for="RutCons" showDetail="true"/>
 
                         <p:outputLabel for="Nombres" value="Nombres: " />
-                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
+                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
                         <p:message for="Nombres" display="icon"/>
 
                         <p:outputLabel for="Paterno" value="Apellido Paterno: " />
-                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
+                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
                         <p:message for="Paterno" display="icon"/>
 
                         <p:outputLabel for="Materno" value="Apellido Materno: "/>
-                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
+                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
                         <p:message for="Materno" display="icon"/>
 
                         <p:outputLabel for="numFicha" value="Numero de Ficha: "/>
-                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
+                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
                         <p:message for="numFicha" display="icon"/>
 
                         <p:outputLabel  value=" "/>
@@ -324,13 +329,13 @@
                         <p:outputLabel  value=" "/>
 
                         <p:outputLabel  for="NombresRep" value="Nombre y Apellido del Representante (Si corresponde): " />
-                        <p:inputText readonly="true" id="NombresRep" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentNombreresponsable}">
+                        <p:inputText readonly="true" id="NombresRep" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentNombreresponsable}">
                             <f:validator validatorId="Validator.NameValidator"/>
                         </p:inputText>
                         <p:message for="NombresRep" display="icon"/>
 
                         <p:outputLabel for="rutRep" value="Rut: "/>
-                        <p:inputText readonly="true" id="rutRep" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentRutresponsable}">
+                        <p:inputText readonly="true" id="rutRep" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentRutresponsable}">
                             <f:validator validatorId="Validator.RutValidator"/>                        
                         </p:inputText>
                         <p:message for="rutRep" display="icon"/>
@@ -341,19 +346,19 @@
                 <p:panel id="InformacionProfesional" header="Datos del Médico o Profesional Responsable">
                     <p:panelGrid columns="6">
                         <p:outputLabel for="RutProfCons" value="Rut: "/>
-                        <p:inputText readonly="true" id="RutProfCons" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persRut}" />
+                        <p:inputText readonly="true" id="RutProfCons" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persRut}" />
                         <p:message for="RutProfCons" showDetail="true"/>
 
                         <p:outputLabel for="NombresProf" value="Nombres: " />
-                        <p:inputText readonly="true" id="NombresProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persNombres}" />                   
+                        <p:inputText readonly="true" id="NombresProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persNombres}" />                   
                         <p:message for="NombresProf" display="icon"/>
 
                         <p:outputLabel for="PaternoProf" value="Apellido Paterno: " />
-                        <p:inputText readonly="true" id="PaternoProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApepaterno}" />                  
+                        <p:inputText readonly="true" id="PaternoProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApepaterno}" />                  
                         <p:message for="PaternoProf" display="icon"/>
 
                         <p:outputLabel for="MaternoProf" value="Apellido Materno: "/>
-                        <p:inputText readonly="true" id="MaternoProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApematerno}" />              
+                        <p:inputText readonly="true" id="MaternoProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApematerno}" />              
                         <p:message for="MaternoProf" display="icon"/>
 
                         <p:outputLabel for="Fecha" value="Fecha: " />
@@ -364,14 +369,14 @@
                 </p:panel>
                 <p:panel id="Procedimiento" toggleable="true" header="Intervención o Procedimiento Indicado">
                     <div align="justify">                       
-                        #{buscarPaciente.consentimientoInformadoSeleccionado.consentTexto}
+                        #{buscarPaciente1.consentimientoInformadoSeleccionado.consentTexto}
                     </div>                    
                 </p:panel>
 
                 <p:panel id="Consentimiento" toggleable="true" header="Consentimiento">          
                     <p:outputLabel value="Estado: "/>
-                    <p:selectOneMenu id="est" value="#{buscarPaciente.estadoConsentimiento}" >
-                        <f:selectItem itemLabel="#{buscarPaciente.consentimientoInformadoSeleccionado.consentEstado}" itemValue="#{buscarPaciente.consentimientoInformadoSeleccionado.consentEstado}" />
+                    <p:selectOneMenu id="est" value="#{buscarPaciente1.estadoConsentimiento}" >
+                        <f:selectItem itemLabel="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentEstado}" itemValue="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentEstado}" />
                         <f:selectItem itemLabel="Pendiente" itemValue="Pendiente" />
                         <f:selectItem itemLabel="Confirmado" itemValue="Confirmado" />
                         <f:selectItem itemLabel="Revoco" itemValue="Revoco" />                        
@@ -379,7 +384,7 @@
                 </p:panel>
 
             </p:panelGrid>
-            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente.editarConsentimiento()}" update=":verConsentimientosInter:PersonasInter,:dialogEditarConsentimiento" />
+            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente1.editarConsentimiento()}" update=":verConsentimientosInter:PersonasInter,:dialogEditarConsentimiento" />
         </h:form>
     </p:dialog>
 
@@ -390,23 +395,23 @@
                 <p:panel id="InformacionPersonalConsVIH" header="Datos del Paciente y/o Representante">
                     <p:panelGrid columns="6">
                         <p:outputLabel for="RutCons" value="Rut: "/>
-                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
+                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
                         <p:message for="RutCons" showDetail="true"/>
 
                         <p:outputLabel for="Nombres" value="Nombres: " />
-                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
+                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
                         <p:message for="Nombres" display="icon"/>
 
                         <p:outputLabel for="Paterno" value="Apellido Paterno: " />
-                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
+                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
                         <p:message for="Paterno" display="icon"/>
 
                         <p:outputLabel for="Materno" value="Apellido Materno: "/>
-                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
+                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
                         <p:message for="Materno" display="icon"/>
 
                         <p:outputLabel for="numFicha" value="Numero de Ficha: "/>
-                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
+                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
                         <p:message for="numFicha" display="icon"/>
 
                         <p:outputLabel  value=" "/>
@@ -414,13 +419,13 @@
                         <p:outputLabel  value=" "/>
 
                         <p:outputLabel  for="NombresRep" value="Nombre y Apellido del Representante (Si corresponde): " />
-                        <p:inputText readonly="true" id="NombresRep" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentNombreresponsable}">
+                        <p:inputText readonly="true" id="NombresRep" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentNombreresponsable}">
                             <f:validator validatorId="Validator.NameValidator"/>
                         </p:inputText>
                         <p:message for="NombresRep" display="icon"/>
 
                         <p:outputLabel for="rutRep" value="Rut: "/>
-                        <p:inputText readonly="true" id="rutRep" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentRutresponsable}">
+                        <p:inputText readonly="true" id="rutRep" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentRutresponsable}">
                             <f:validator validatorId="Validator.RutValidator"/>                        
                         </p:inputText>
                         <p:message for="rutRep" display="icon"/>
@@ -434,7 +439,7 @@
                         <p:outputLabel value=" "/>
 
                         <p:outputLabel value="Estado: "/>
-                        <p:selectOneMenu id="est" value="#{buscarPaciente.estadoConsentimientoVIH}" > 
+                        <p:selectOneMenu id="est" value="#{buscarPaciente1.estadoConsentimientoVIH}" > 
                             <f:selectItem itemLabel="Pendiente" itemValue="Pendiente" />
                             <f:selectItem itemLabel="Confirmado" itemValue="Confirmado" />
                             <f:selectItem itemLabel="Revoco" itemValue="Revoco" />                        
@@ -444,7 +449,7 @@
 
 
             </p:panelGrid>
-            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente.editarConsentimientoVIH()}" update="actualizarConsentimientoVIH" />
+            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente1.editarConsentimientoVIH()}" update="actualizarConsentimientoVIH" />
         </h:form>
     </p:dialog>
     
@@ -455,23 +460,23 @@
                 <p:panel id="InformacionPersonalEst" header="Datos del Paciente y/o Representante">
                     <p:panelGrid columns="6">
                         <p:outputLabel for="RutCons" value="Rut: "/>
-                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
+                        <p:inputText readonly="true" id="RutCons" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persRut}" /> 
                         <p:message for="RutCons" showDetail="true"/>
 
                         <p:outputLabel for="Nombres" value="Nombres: " />
-                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
+                        <p:inputText readonly="true" id="Nombres" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persNombres}" />                   
                         <p:message for="Nombres" display="icon"/>
 
                         <p:outputLabel for="Paterno" value="Apellido Paterno: " />
-                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
+                        <p:inputText readonly="true" id="Paterno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApepaterno}" />                  
                         <p:message for="Paterno" display="icon"/>
 
                         <p:outputLabel for="Materno" value="Apellido Materno: "/>
-                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
+                        <p:inputText readonly="true" id="Materno" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persApematerno}" />              
                         <p:message for="Materno" display="icon"/>
 
                         <p:outputLabel for="numFicha" value="Numero de Ficha: "/>
-                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
+                        <p:inputText readonly="true" id="numFicha" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.paciNficha}" />
                         <p:message for="numFicha" display="icon"/>
 
                         <p:outputLabel  value=" "/>
@@ -479,34 +484,34 @@
                         <p:outputLabel  value=" "/>
 
                         <p:outputLabel for="domicilio" value="Domicilio: "/>
-                        <p:inputText readonly="true" id="domicilio" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persDireccion}" />              
+                        <p:inputText readonly="true" id="domicilio" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persDireccion}" />              
                     <p:message for="domicilio" display="icon"/>
                     
                     <p:outputLabel for="consultorio" value="Consultorio: "/>
-                    <p:inputText readonly="true" id="consultorio" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idConsultorio.consNombre}" />              
+                    <p:inputText readonly="true" id="consultorio" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idConsultorio.consNombre}" />              
                     <p:message for="consultorio" display="icon"/>
                     
                     <p:outputLabel for="FechaNaci" value="Fecha de Nacimiento: " />
-                    <p:calendar readonly="true" id="FechaNaci" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idPaciente.idPersona.persFnacimiento}">                        
+                    <p:calendar readonly="true" id="FechaNaci" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idPaciente.idPersona.persFnacimiento}">                        
                         
                     </p:calendar>
                     <p:message for="FechaNaci" display="icon"/>                   
                     
                     
                     <p:outputLabel for="paridad" value="Paridad: "/>
-                    <p:inputText id="paridad" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentParidad}" />              
+                    <p:inputText id="paridad" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentParidad}" />              
                     <p:message for="paridad" display="icon"/>
                     
                     <p:outputLabel value="F.O: "/>
-                    <p:inputText id="estFO" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentFo}" />              
+                    <p:inputText id="estFO" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentFo}" />              
                     <p:message for="estFO" display="icon"/>
                     
                     <p:outputLabel for="hijosVivos" value="Hijos Vivos Actualmente: "/>
-                    <p:inputText id="hijosVivos" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentHijosvivos}" />              
+                    <p:inputText id="hijosVivos" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentHijosvivos}" />              
                     <p:message for="hijosVivos" display="icon"/>
                     
                     <h:outputText value="Embarazada Actualmente: " />  
-                    <p:selectBooleanCheckbox disabled="true" id = "id1" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentEmbarazada}"  >                            
+                    <p:selectBooleanCheckbox disabled="true" id = "id1" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentEmbarazada}"  >                            
                     </p:selectBooleanCheckbox>
                     <p:message id="msgMaq" for="id1"  /> 
                     
@@ -521,23 +526,23 @@
                 <p:panel id="InformacionProfesionalEst" header="Datos del Médico o Profesional Responsable">
                     <p:panelGrid columns="6">
                         <p:outputLabel for="RutProfCons" value="Rut: "/>
-                        <p:inputText readonly="true" id="RutProfCons" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persRut}" />
+                        <p:inputText readonly="true" id="RutProfCons" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persRut}" />
                         <p:message for="RutProfCons" showDetail="true"/>
 
                         <p:outputLabel for="NombresProf" value="Nombres: " />
-                        <p:inputText readonly="true" id="NombresProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persNombres}" />                   
+                        <p:inputText readonly="true" id="NombresProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persNombres}" />                   
                         <p:message for="NombresProf" display="icon"/>
 
                         <p:outputLabel for="PaternoProf" value="Apellido Paterno: " />
-                        <p:inputText readonly="true" id="PaternoProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApepaterno}" />                  
+                        <p:inputText readonly="true" id="PaternoProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApepaterno}" />                  
                         <p:message for="PaternoProf" display="icon"/>
 
                         <p:outputLabel for="MaternoProf" value="Apellido Materno: "/>
-                        <p:inputText readonly="true" id="MaternoProf" value="#{buscarPaciente.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApematerno}" />              
+                        <p:inputText readonly="true" id="MaternoProf" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.idProfesional.idPersona.persApematerno}" />              
                         <p:message for="MaternoProf" display="icon"/>
 
                         <p:outputLabel for="Fecha" value="Fecha: " />
-                        <p:calendar readonly="true" id="Fecha" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente.consentimientoInformadoSeleccionado.consentFecha}" >                        
+                        <p:calendar readonly="true" id="Fecha" effect="explode" yearRange="c-100:c" navigator="true" value="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentFecha}" >                        
                         </p:calendar>
                         <p:message for="Fecha" display="icon"/>          
                     </p:panelGrid>
@@ -545,8 +550,8 @@
 
                 <p:panel id="ConsentimientoEst" toggleable="true" header="Consentimiento">          
                     <p:outputLabel value="Estado: "/>
-                    <p:selectOneMenu id="estEst" value="#{buscarPaciente.estadoConsentimientoEst}" >
-                        <f:selectItem itemLabel="#{buscarPaciente.consentimientoInformadoSeleccionado.consentEstado}" itemValue="#{buscarPaciente.consentimientoInformadoSeleccionado.consentEstado}" />
+                    <p:selectOneMenu id="estEst" value="#{buscarPaciente1.estadoConsentimientoEst}" >
+                        <f:selectItem itemLabel="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentEstado}" itemValue="#{buscarPaciente1.consentimientoInformadoSeleccionado.consentEstado}" />
                         <f:selectItem itemLabel="Pendiente" itemValue="Pendiente" />
                         <f:selectItem itemLabel="Confirmado" itemValue="Confirmado" />
                         <f:selectItem itemLabel="Revoco" itemValue="Revoco" />                        
@@ -554,7 +559,7 @@
                 </p:panel>
 
             </p:panelGrid>
-            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente.editarConsentimientoEst()}" update=":verConsentimientosEst:PersonasEst, :dialogEditarConsentimientoEst" />
+            <p:commandButton  value="Guardar Cambios"  action="#{buscarPaciente1.editarConsentimientoEst()}" update=":verConsentimientosEst:PersonasEst, :dialogEditarConsentimientoEst" />
         </h:form>
     </p:dialog>
 
