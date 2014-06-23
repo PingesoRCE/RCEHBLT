@@ -35,7 +35,14 @@
             <p:submenu label="Paciente" >
                 <p:menuitem value="Ingresar" url="#" onclick="PF('addPac').show()"/>
                 <p:menuitem value="Ver Pacientes" url="#" onclick="PF('viewPac').show()"/>
-            </p:submenu>                            
+            </p:submenu>
+            
+            <p:submenu label="Especialidades">
+                <p:menuitem value="Ver Especialidades"  url="#" onclick="PF('espec').show()"/>
+            </p:submenu>
+            <p:submenu label="Sub-Especialidades">
+                <p:menuitem value="Ver Sub-Especialidades"  url="#" onclick="PF('subespec').show()"/>
+            </p:submenu>
         
             <p:menuitem value="Buscar Paciente" url="#" onclick="PF('searchPac').show()"/>
           
@@ -50,6 +57,17 @@
                   minimizable="true" height="540" width="1000" onShow="#{buscarPaciente.init()}">
             <p:ajax event="close" listener="#{buscarPaciente.init()}" update="formBuscar"/>
             <ui:include src="VisualizarPaciente.xhtml"/>
+        </p:dialog>
+        
+        <p:dialog id="adminSubespecialidades" maximizable="true" header="Sub-Especialidades" widgetVar="subespec" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
+                  minimizable="true" height="540" width="800" onShow="#{subespecialidadMB.init()}">
+            <p:ajax event="close" listener="#{subespecialidadMB.init()}" update="subespecialidades"/>
+            <ui:include src="Subespecialidad.xhtml"/>
+        </p:dialog>
+        <p:dialog id="adminEspecialidades" maximizable="true" header="Especialidades" widgetVar="espec" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
+                  minimizable="true" height="540" width="800" onShow="#{especialidadMB.init()}">
+            <p:ajax event="close" listener="#{especialidadMB.init()}" update="especialidades"/>
+            <ui:include src="Especialidad.xhtml"/>
         </p:dialog>
         
         <p:dialog id="buscarPaciente" maximizable="true" header="Buscar Pacientes" widgetVar="searchPac" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
