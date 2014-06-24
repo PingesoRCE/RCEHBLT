@@ -67,6 +67,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Anamnesis2.findByAnamUltimoemb", query = "SELECT a FROM Anamnesis2 a WHERE a.anamUltimoemb = :anamUltimoemb"),
     @NamedQuery(name = "Anamnesis2.findByAnamVaginales", query = "SELECT a FROM Anamnesis2 a WHERE a.anamVaginales = :anamVaginales")})
 public class Anamnesis2 implements Serializable {
+    @Column(name = "anam_fechacreacion")
+    @Temporal(TemporalType.DATE)
+    private Date anamFechacreacion;
+    @Column(name = "anam_acorde")
+    private Boolean anamAcorde;
+    @Size(max = 2147483647)
+    @Column(name = "anam_patologias")
+    private String anamPatologias;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -463,6 +471,30 @@ public class Anamnesis2 implements Serializable {
     @Override
     public String toString() {
         return "cl.rcehblt.entities.Anamnesis2[ idAnamnesis=" + idAnamnesis + " ]";
+    }
+
+    public Date getAnamFechacreacion() {
+        return anamFechacreacion;
+    }
+
+    public void setAnamFechacreacion(Date anamFechacreacion) {
+        this.anamFechacreacion = anamFechacreacion;
+    }
+
+    public Boolean getAnamAcorde() {
+        return anamAcorde;
+    }
+
+    public void setAnamAcorde(Boolean anamAcorde) {
+        this.anamAcorde = anamAcorde;
+    }
+
+    public String getAnamPatologias() {
+        return anamPatologias;
+    }
+
+    public void setAnamPatologias(String anamPatologias) {
+        this.anamPatologias = anamPatologias;
     }
     
 }

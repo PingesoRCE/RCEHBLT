@@ -48,6 +48,7 @@
             </p:submenu>
         
             <p:menuitem value="Buscar Paciente" url="#" onclick="PF('searchPac').show()"/>
+            <p:menuitem value="Elisa" url="#" onclick="PF('addEli').show()"/>
           
         </p:menubar>
         <p:dialog id='admisionPacientes' maximizable="true" header="Admision Pacientes" widgetVar="addPac" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
@@ -90,6 +91,12 @@
             <p:ajax event="close" listener="#{busquedaMB.init()}" update="buscaPaciente"/>
             <ui:include src="BuscarPaciente.xhtml"/>
         </p:dialog>
+        
+        <p:dialog id='elisa' maximizable="true" header="Examen Elisa" widgetVar="addEli" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
+                  minimizable="true" height="540" width="800" >            
+            <ui:include src="ExElisa.xhtml"/>
+        </p:dialog>
+        
 
         
         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">

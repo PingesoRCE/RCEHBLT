@@ -7,6 +7,7 @@
 package cl.rcehblt.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -38,6 +41,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ConsentimientoInformado.findByConsentTexto", query = "SELECT c FROM ConsentimientoInformado c WHERE c.consentTexto = :consentTexto"),
     @NamedQuery(name = "ConsentimientoInformado.findByConsentTipo", query = "SELECT c FROM ConsentimientoInformado c WHERE c.consentTipo = :consentTipo")})
 public class ConsentimientoInformado implements Serializable {
+    @Column(name = "consent_fecha")
+    @Temporal(TemporalType.DATE)
+    private Date consentFecha;
+    @Size(max = 20)
+    @Column(name = "consent_paridad")
+    private String consentParidad;
+    @Size(max = 5)
+    @Column(name = "consent_fo")
+    private String consentFo;
+    @Column(name = "consent_hijosvivos")
+    private Integer consentHijosvivos;
+    @Column(name = "consent_embarazada")
+    private Boolean consentEmbarazada;
+    @Column(name = "consent_fechaparto")
+    @Temporal(TemporalType.DATE)
+    private Date consentFechaparto;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -171,6 +190,54 @@ public class ConsentimientoInformado implements Serializable {
     @Override
     public String toString() {
         return "cl.rcehblt.entities.ConsentimientoInformado[ idConsentimiento=" + idConsentimiento + " ]";
+    }
+
+    public Date getConsentFecha() {
+        return consentFecha;
+    }
+
+    public void setConsentFecha(Date consentFecha) {
+        this.consentFecha = consentFecha;
+    }
+
+    public String getConsentParidad() {
+        return consentParidad;
+    }
+
+    public void setConsentParidad(String consentParidad) {
+        this.consentParidad = consentParidad;
+    }
+
+    public String getConsentFo() {
+        return consentFo;
+    }
+
+    public void setConsentFo(String consentFo) {
+        this.consentFo = consentFo;
+    }
+
+    public Integer getConsentHijosvivos() {
+        return consentHijosvivos;
+    }
+
+    public void setConsentHijosvivos(Integer consentHijosvivos) {
+        this.consentHijosvivos = consentHijosvivos;
+    }
+
+    public Boolean getConsentEmbarazada() {
+        return consentEmbarazada;
+    }
+
+    public void setConsentEmbarazada(Boolean consentEmbarazada) {
+        this.consentEmbarazada = consentEmbarazada;
+    }
+
+    public Date getConsentFechaparto() {
+        return consentFechaparto;
+    }
+
+    public void setConsentFechaparto(Date consentFechaparto) {
+        this.consentFechaparto = consentFechaparto;
     }
     
 }
