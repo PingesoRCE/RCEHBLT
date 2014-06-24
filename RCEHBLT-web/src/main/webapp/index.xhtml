@@ -36,7 +36,10 @@
                 <p:menuitem value="Ingresar" url="#" onclick="PF('addPac').show()"/>
                 <p:menuitem value="Ver Pacientes" url="#" onclick="PF('viewPac').show()"/>
             </p:submenu>
-            
+            <p:submenu label="Profesional" >
+                <p:menuitem value="Ingresar Profesional" url="#" onclick="PF('addPro').show()"/>
+                <p:menuitem value="Ver Profesionales" url="#" onclick="PF('viewPro').show()"/>
+            </p:submenu>
             <p:submenu label="Especialidades">
                 <p:menuitem value="Ver Especialidades"  url="#" onclick="PF('espec').show()"/>
             </p:submenu>
@@ -51,6 +54,18 @@
                   minimizable="true" height="540" width="800" onShow="#{pacienteMB.init()}">
             <p:ajax event="close" listener="#{pacienteMB.init()}" update="formul"/>
             <ui:include src="Paciente.xhtml"/>
+        </p:dialog>
+        
+        <p:dialog id="agregarProfesional" maximizable="true" header="Profesionales" widgetVar="addPro" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
+                  minimizable="true" height="540" width="800" onShow="#{ingresoProfesional.init()}">
+            <p:ajax event="close" listener="#{ingresoProfesional.init()}" update="formulProfesional"/>
+            <ui:include src="AgregarProfesional.xhtml"/>
+        </p:dialog>
+        
+        <p:dialog id="ingresarProfesional" maximizable="true" header="Profesionales" widgetVar="viewPro" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
+                  minimizable="true" height="540" width="800" onShow="#{buscarProfesional.init()}">
+            <p:ajax event="close" listener="#{buscarProfesional.init()}" update="formBuscarProfesional"/>
+            <ui:include src="VisualizarProfesional.xhtml"/>
         </p:dialog>
         
          <p:dialog id="visualizarPaciente" maximizable="true" header="Pacientes" widgetVar="viewPac" showEffect="fade" hideEffect="fade" closeOnEscape="true" 
